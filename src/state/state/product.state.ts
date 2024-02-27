@@ -1,17 +1,19 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, State, StateContext, StateToken } from '@ngxs/store';
 import { ProductLoadFailureAction, ProductLoadingAction, ProductLoadSuccessAction } from '../actions';
 import { ProductService } from '../../app/services/product.service';
 import { inject, Injectable } from '@angular/core';
 import { catchError, of, tap } from 'rxjs';
 
-export interface IProductState {
+const PRODUCTS_STATE_TOKEN = new StateToken<ProductStateModel>('products');
+
+export interface ProductStateModel {
   loading: boolean;
   products: any[];
   error: any;
 }
 
-@State<IProductState>({
-  name: 'products',
+@State<ProductStateModel>({
+  name: PRODUCTS_STATE_TOKEN,
   defaults: {
     loading: false,
     products: [],
@@ -23,7 +25,7 @@ export class ProductState {
   private readonly _productService: ProductService = inject(ProductService);
 
   @Action(ProductLoadingAction)
-  productLoading(ctx: StateContext<IProductState>) {
+  productLoading(ctx: StateContext<ProductStateModel>) {
     ctx.patchState({ loading: true });
 
     return this._productService.getProducts().pipe(
@@ -39,7 +41,7 @@ export class ProductState {
   }
 
   @Action(ProductLoadSuccessAction)
-  productLoadSuccess(ctx: StateContext<IProductState>, action: ProductLoadSuccessAction) {
+  productLoadSuccess(ctx: StateContext<ProductStateModel>, action: ProductLoadSuccessAction) {
     ctx.patchState({
       loading: false,
       products: action.payload,
@@ -47,7 +49,7 @@ export class ProductState {
   }
 
   @Action(ProductLoadFailureAction)
-  productLoadFailure(ctx: StateContext<IProductState>, action: ProductLoadFailureAction) {
+  productLoadFailure(ctx: StateContext<ProductStateModel>, action: ProductLoadFailureAction) {
     ctx.patchState({
       loading: false,
       error: action.payload,

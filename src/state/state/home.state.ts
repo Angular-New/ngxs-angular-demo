@@ -1,9 +1,11 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, State, StateContext, StateToken } from '@ngxs/store';
 import { HideButtonAction, ShowButtonAction } from '../actions';
 import { Injectable } from '@angular/core';
 
+const HOME_STATE_TOKEN = new StateToken<unknown>('home');
+
 @State<boolean>({
-  name: 'home',
+  name: HOME_STATE_TOKEN,
   defaults: false,
 })
 @Injectable()
