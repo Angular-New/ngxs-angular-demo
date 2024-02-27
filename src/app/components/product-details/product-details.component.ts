@@ -1,28 +1,27 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from 'src/app/services/product.service';
+
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  styleUrls: ['./product-details.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit {
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _productService = inject(ProductService);
 
-  selectedProduct: any;
+  public selectedProduct: any;
 
-  constructor(private activatedRoute: ActivatedRoute,
-    private productService: ProductService){}
-
-  ngOnInit(){
-    this.activatedRoute.params.subscribe(p => {
+  ngOnInit(): void {
+    this._activatedRoute.params.subscribe(p => {
       const id = p['id'];
 
-      this.productService.getProductById(id).subscribe(result => {
+      this._productService.getProductById(id).subscribe(result => {
         this.selectedProduct = result;
-      })
-
-    })
+      });
+    });
   }
-
 }
