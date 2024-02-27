@@ -26,4 +26,6 @@ export class ProductsComponent implements OnInit {
   public removeProductNow(id: number) {
     console.log('Product to be removed: ', id);
   }
+
+  public trackByProduct = (_: number, product: any): number => product.id;
 }
