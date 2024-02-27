@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { NgxsModule } from '@ngxs/store';
-import { HomeState } from '../state/state';
+import { HomeState, ProductState } from '../state/state';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 @NgModule({
@@ -39,7 +39,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    NgxsModule.forRoot([HomeState]),
+    NgxsModule.forRoot([HomeState, ProductState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [],

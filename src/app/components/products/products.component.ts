@@ -1,33 +1,29 @@
-import { Component } from '@angular/core';
-import { ProductService } from '../../services/product.service';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+
+import { ProductLoadingAction } from '../../../state/actions';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
+  private readonly _store = inject(Store);
 
-  products: any[] = [];
-  product: any;
-
-  constructor(
-    private productService: ProductService, 
-    private router: Router) {}
+  public products$ = this._store.select(state => state.products.products);
+  public product: any;
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(data => {
-      this.products = data;
-      console.log('Products: ', this.products);
-    });
+    this._store.dispatch(new ProductLoadingAction());
   }
-  
-  orderProductNow(product: any) {
+
+  public orderProductNow(product: any) {
     console.log('Product to be ordered: ', product);
   }
 
-  removeProductNow(id: number) {
+  public removeProductNow(id: number) {
     console.log('Product to be removed: ', id);
   }
 }

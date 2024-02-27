@@ -9,7 +9,7 @@ import { HideButtonAction, ShowButtonAction } from '../../../state/actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  private _store: Store = inject(Store);
+  private readonly _store: Store = inject(Store);
 
   public isShowMore$ = this._store.select(state => state.home);
 
