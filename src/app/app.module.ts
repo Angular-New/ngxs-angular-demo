@@ -16,6 +16,8 @@ import { SignupComponent } from './components/about/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { NgxsModule } from '@ngxs/store';
+import { HomeState } from '../state/state';
 
 @NgModule({
   declarations: [
@@ -29,15 +31,17 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     LoginComponent,
     SignupComponent,
     ProductCardComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxsModule.forRoot([HomeState]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

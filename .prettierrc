@@ -3,5 +3,6 @@
   "trailingComma": "all",
   "bracketSpacing": true,
   "editorconfig": true,
-  "singleQuote": true
+  "singleQuote": true,
+  "cursorOffset": 1
 }
