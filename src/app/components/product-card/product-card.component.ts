@@ -1,14 +1,13 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  styleUrls: ['./product-card.component.css'],
 })
 export class ProductCardComponent {
-
   @Input({ alias: 'product' }) product: any;
 
   @Output() orderProduct = new EventEmitter<any>();
@@ -20,16 +19,17 @@ export class ProductCardComponent {
     this.orderProduct.emit(this.product);
   }
 
-  removeProductClick(id:number){
+  removeProductClick(id: number) {
     this.removeProduct.emit(id);
   }
 
-  showDetails(id: number){
-    void inject(Router).navigate([`products/${id}`])
+  showDetails(id: number) {
+    void inject(Router).navigate([`products/${id}`]);
   }
 
   public rating = 3; // Initialize to some default value between 1-5
   public stars = [1, 2, 3, 4, 5];
+
   setRating(star: number): void {
     this.rating = star;
   }
@@ -48,6 +48,4 @@ export class ProductCardComponent {
         return 'badge';
     }
   }
-
-
 }
