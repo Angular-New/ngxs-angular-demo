@@ -22,7 +22,10 @@ export class ProductService {
   }
 
   updateProduct(product: any): Observable<any> {
-    return this._http.put<any>(`${this._baseUrl}/products/${product.id}`, product);
+    return this._http.put<any>(
+      `${this._baseUrl}/products/${product.id}`,
+      product,
+    );
   }
 
   removeProduct(id: number): Observable<any> {
@@ -30,8 +33,8 @@ export class ProductService {
   }
 
   getProductsByCategory(category: string): Observable<any> {
-    return this._http.get<any>(`${this._baseUrl}/products/category/${category}`);
+    return this._http.get<any>(
+      `${this._baseUrl}/products/category/${category}`,
+    );
   }
-
-
 }

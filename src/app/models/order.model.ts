@@ -1,7 +1,6 @@
 export interface Order {
-    bookTitle: string;
-    authorName: string;
-    quantity: number;
-    deliveryAddress: string;
-  }
-  
+  bookTitle: string;
+  authorName: string;
+  quantity: number;
+  deliveryAddress: string;
+}

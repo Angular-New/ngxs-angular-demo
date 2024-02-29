@@ -47,5 +47,4 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
