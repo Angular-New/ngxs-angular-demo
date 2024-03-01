@@ -11,9 +11,9 @@ import { catchError, of, tap } from 'rxjs';
 const PRODUCTS_STATE_TOKEN = new StateToken<ProductStateModel>('products');
 
 export interface ProductStateModel {
-  loading: boolean;
-  products: any[];
-  error: any;
+  readonly loading: boolean;
+  readonly products: any[];
+  readonly error: any;
 }
 
 @State<ProductStateModel>({
