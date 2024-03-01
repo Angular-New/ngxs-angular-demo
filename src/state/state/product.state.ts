@@ -1,5 +1,9 @@
 import { Action, State, StateContext, StateToken } from '@ngxs/store';
-import { ProductLoadFailureAction, ProductLoadingAction, ProductLoadSuccessAction } from '../actions';
+import {
+  ProductLoadFailureAction,
+  ProductLoadingAction,
+  ProductLoadSuccessAction,
+} from '../actions';
 import { ProductService } from '../../app/services/product.service';
 import { inject, Injectable } from '@angular/core';
 import { catchError, of, tap } from 'rxjs';
@@ -41,7 +45,10 @@ export class ProductState {
   }
 
   @Action(ProductLoadSuccessAction)
-  productLoadSuccess(ctx: StateContext<ProductStateModel>, action: ProductLoadSuccessAction) {
+  productLoadSuccess(
+    ctx: StateContext<ProductStateModel>,
+    action: ProductLoadSuccessAction,
+  ) {
     ctx.patchState({
       loading: false,
       products: action.payload,
@@ -49,7 +56,10 @@ export class ProductState {
   }
 
   @Action(ProductLoadFailureAction)
-  productLoadFailure(ctx: StateContext<ProductStateModel>, action: ProductLoadFailureAction) {
+  productLoadFailure(
+    ctx: StateContext<ProductStateModel>,
+    action: ProductLoadFailureAction,
+  ) {
     ctx.patchState({
       loading: false,
       error: action.payload,
